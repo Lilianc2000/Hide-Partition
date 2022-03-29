@@ -1,0 +1,27 @@
+Etape 1 : initialiser la clé
+
+Créer une nouvelle table de partition MBR sur la clé USB cible
+Créer une première partition en FAT32 de la taille de la clé moins la taille de la partition cachée voulue
+Créer une seconde partition EXT4 chiffrée avec LUKS avec le reste de la clé
+
+Etape 2 : cacher la partition
+
+Retirer et insérer la clé dans la machine
+Monter la partition principale de la clé (ne pas monter la partition LUKS)
+Lancer le script "hide_partition.sh" avec comme argument l'emplacement dans /dev/ de la clé
+Suivre les indications :
+	- Valider l'opération
+	- Sauvegarder la chaine de caractère indiquée
+	- Ejecter proprement la clé avec "umount"
+Retirer la clé de la machine
+
+Etape 3 : récuperer la partition
+
+Insérer la clé dans la machine
+Monter la partition de la clé
+Lancer le script "restore_partition.sh" avec comme argument l'emplacement dans /dev/ de la clé
+Suivre les indication :
+	- Valider l'opération
+	- Insérer la chaine de caractère qui a été sauvegarder lors du masquage de la partition
+	- Ejecter proprement la clé avec "umount"
+Retirer la clé de la machine
